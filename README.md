@@ -1,14 +1,8 @@
 # PocketBase Extensions
 
-## Current Support
-- [x] Collection
-- [ ] Storage
-- [ ] Authentication
-
-
 ## Compatible Template
-- [JuneFlut]
-- [JuneFlut-Web]
+- [JuneFlut](https://github.com/melodysdreamj/JuneFlut)
+- [JuneFlut-Web](https://github.com/melodysdreamj/JuneFlut-Web)
 
 ## Dependency Extensions
 none
@@ -16,11 +10,16 @@ none
 ## Introduction
 PocketBase is an open-source project that allows you to provide backend services with just one file. Please refer to [this site](https://pocketbase.io/) for more details.
 
+## Current Support
+- [x] Collection
+- [ ] Storage
+- [ ] Authentication
+
 ## How to Create a Service
 You can follow [this guide](https://pocketbase.io/docs/) to install it on your own computer, or you can easily create and use it at a place called [PocketBase](https://app.pockethost.io/). As of the time of writing this, you can use one for free.
 
 ## Install Extensions
-1. 
+1. Go to the [JuneFlut](https://github.com/melodysdreamj/JuneFlut) or [JuneFlut-Web](https://github.com/melodysdreamj/JuneFlut-Web) GitHub and create your own project by following the guide.
 2. In the terminal where your project is located, enter the following to add a plugin.
 ```bash
 flutter pub add pocketbase:0.18.1
