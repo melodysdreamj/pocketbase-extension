@@ -1,6 +1,7 @@
 import 'package:pocketbase/pocketbase.dart';
 
 import '../../../../../domain/entity/model/new/model.dart';
+import 'dart:convert';
 
 class NewModelPocketBase {
   // config
