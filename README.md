@@ -2,8 +2,8 @@
 
 ## Current Support
 - [x] Collection
-- [] Storage
-- [] Authentication
+- [ ] Storage
+- [ ] Authentication
 
 
 ## Compatible Template
