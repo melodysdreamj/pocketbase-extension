@@ -9,9 +9,7 @@ analyzer:
     unnecessary_import: ignore
     dead_null_aware_expression: ignore
   exclude:
-    - lego/**
-    - lego_firebase/**
-    - lego_google_mobile_ads/**
+    - extension/**
 
 linter:
   rules:
