@@ -24,7 +24,7 @@ You can follow [this guide](https://pocketbase.io/docs/) to install it on your o
 ```bash
 flutter pub add pocketbase:0.18.1
 ```
-3. Please copy all the folders under the extension folder and paste them into the lib folder of your project.
+3. Please copy all the folders under the `extension` folder and paste them into the `lib` folder of `your project`.
 
 ## Connect to PocketBase
 1. The way to use the database is generally the same as others. Please refer to this.
