@@ -15,7 +15,7 @@ PocketBase is an open-source project that allows you to provide backend services
 - [ ] Storage
 - [ ] Authentication
 
-## How to Create a Service
+## How to Create a PocketBase Service
 You can follow [this guide](https://pocketbase.io/docs/) to install it on your own computer, or you can easily create and use it at a place called [PocketBase](https://app.pockethost.io/). As of the time of writing this, you can use one for free.
 
 ## Install Extensions
