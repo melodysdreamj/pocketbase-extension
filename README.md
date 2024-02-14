@@ -1,8 +1,8 @@
 # PocketBase Extensions
 
 ## Compatible Template
-- [JuneFlut](https://github.com/melodysdreamj/JuneFlut)
-- [JuneFlut-Web](https://github.com/melodysdreamj/JuneFlut-Web)
+- [JuneFlutter](https://github.com/melodysdreamj/JuneFlut)
+- [JuneFlutter-Web](https://github.com/melodysdreamj/JuneFlut-Web)
 
 ## Dependency Extensions
 none
