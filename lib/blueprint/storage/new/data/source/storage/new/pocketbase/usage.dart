@@ -8,48 +8,17 @@ import 'package:pocketbase/pocketbase.dart';
 import '../../../../../../../../util/start_app.dart';
 import 'storage.dart';
 
-_button00(BuildContext context) async {
-  NewPocketBaseStorage()
-      .insertSync("hello.text", Uint8List.fromList(utf8.encode(("hello"))));
-}
+_button00(BuildContext context) async {}
 
-_button01(BuildContext context) async {
-  File? _ = await NewPocketBaseStorage().getSync("hello.text");
-  log(_?.path);
-  log(await _?.length());
+_button01(BuildContext context) async {}
 
-  if (_ == null) return;
+_button02(BuildContext context) async {}
 
-  log(_.existsSync());
+_button03(BuildContext context) async {}
 
-  String text = utf8.decode(await _.readAsBytes());
-  log(text);
-}
+_button04(BuildContext context) async {}
 
-_button02(BuildContext context) async {
-}
-
-_button03(BuildContext context) async {
-  // bool success = await PermissionHandlerSpell()
-  //     .getMyPermission(context, [MyPermission(Permission.storage)]);
-  // if (success) {
-  //   // MySnackBarSpell().basicSnackBar1(context, "finish");
-  // }
-
-  if (await Permission.storage.request().isGranted) {
-    // Either the permission was already granted before or the user just granted it.
-  }
-}
-
-_button04(BuildContext context) async {
-  NewPocketBaseStorage()
-      .upsertSync("hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
-}
-
-_button05(BuildContext context) async {
-  NewPocketBaseStorage()
-      .upsertSync("hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
-}
+_button05(BuildContext context) async {}
 
 _button06(BuildContext context) async {}
 

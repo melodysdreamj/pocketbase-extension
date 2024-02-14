@@ -2,7 +2,7 @@ import '../../../../../../../util/start_app.dart';
 import '../../../../domain/repository/auth/pocket_base/interface.dart';
 import '../../../source/auth/pocketbase/_.dart';
 
-class NewPocketBaseAuthRepo extends NewPocketBaseAuthRepoInterface {
+class PocketBaseAuthRepo extends PocketBaseAuthRepoInterface {
   @override
   Future<bool> emailLogin(String email, String password,
       {bool? isAdmin}) async {

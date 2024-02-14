@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 
-import '../../../../../../../../util/start_app.dart';
-import '../../../../../../../auth/new/data/source/auth/pocketbase/_.dart';
-import '../local_storage/storage.dart';
+import '../../../../../../../../app/_/_/data/source/auth/pocketbase/_.dart';
+
 import 'config.dart';
 
 import 'package:http/http.dart' as http;
@@ -102,7 +101,7 @@ class NewPocketBaseStorage {
             .toString();
       }
     } on Exception catch (e) {
-      e.printError();
+      // e.printError();
       return null;
     }
   }
@@ -148,88 +147,6 @@ class NewPocketBaseStorage {
       return null;
     }
   }
-
-  Future<File?> getSync(String userId, String fileName) async {
-    // 1. 로컬에 파일이 있는지 확인하기 ( 있다면 리턴)
-    File? localFile = await NewLocalStorage().get(userId, fileName);
-    if (localFile != null) {
-      return localFile;
-    }
-
-    Uint8List? serverFileData = await get(userId, fileName);
-
-    if (serverFileData != null) {
-      await NewLocalStorage().setByData(userId, fileName, serverFileData);
-      return NewLocalStorage().get(userId, fileName);
-    }
-
-    return null;
-  }
-
-  Future<bool> insertSync(String userId, String fileName, Uint8List? data) async {
-    if (data == null) return false;
-
-    File? localFile = await NewLocalStorage().get(userId, fileName);
-    if (localFile == null) {
-      await NewLocalStorage().setByData(userId, fileName, data);
-    }
-
-    Uint8List? serverFileData = await get(userId, fileName);
-    if (serverFileData == null) {
-      await set(userId, fileName, data);
-    }
-
-    return true;
-  }
-
-  Future<bool> upsertSync(String userId, String fileName, Uint8List? data) async {
-    if (data == null) return false;
-
-    await NewLocalStorage().setByData(userId, fileName, data);
-    // File? localFile = await localStorage.get(fileName);
-    // if (localFile == null) {
-    //   await localStorage.setByData(fileName, data);
-    // }else{
-    //   if(localFile.lengthSync() != data.lengthInBytes){
-    //     log("localFile.lengthSync():${localFile.lengthSync()}");
-    //     log("data.lengthInBytes:${data.lengthInBytes}");
-    //     await localStorage.setByData(fileName, data);
-    //   }else{
-    //     // 파일크기가 같은 경우는 하지 말아주자.
-    //   }
-    // }
-
-    await set(userId, fileName, data);
-
-    // Uint8List? serverFileData = await get(fileName);
-    // if (serverFileData == null) {
-    //   await set(fileName, data);
-    // }else{
-    //   if(serverFileData.lengthInBytes != data.lengthInBytes){
-    //     log("serverFileData.lengthInBytes:${serverFileData.lengthInBytes}");
-    //     log("data.lengthInBytes:${data.lengthInBytes}");
-    //     await set(fileName, data);
-    //   }else{
-    //     // 파일크기가 같은 경우는 하지 말아주자.
-    //   }
-    // }
-
-    return true;
-  }
-
-  Future<void> deleteLocal(String userId, String fileName) async {
-    await NewLocalStorage().delete(userId, fileName);
-  }
-
-  Future<void> deleteServer(String userId, String fileName) async {
-    await delete(userId, fileName);
-  }
-
-  Future<void> deleteSync(String userId, String fileName) async {
-    await deleteLocal(userId, fileName);
-    await deleteServer(userId, fileName);
-  }
-
   late PocketBase pb;
 
   _ready() async {

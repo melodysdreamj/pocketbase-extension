@@ -1,6 +1,6 @@
 import 'package:pocketbase/pocketbase.dart';
 
-import '../../../../../../../auth/new/data/source/auth/pocketbase/_.dart';
+import '../../../../../../../../app/_/_/data/source/auth/pocketbase/_.dart';
 import '../../../../../domain/entity/model/new/model.dart';
 import 'dart:convert';
 

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+import '../../../../../../../../app/_/_/data/source/auth/pocketbase/_.dart';
 import '../../../../../../../../util/start_app.dart';
-import '../../../../../../../auth/new/data/source/auth/pocketbase/_.dart';
 import 'storage.dart';
 
 _button00(BuildContext context) async {
@@ -15,51 +15,33 @@ _button00(BuildContext context) async {
   String? userId = await PocketBaseAuth().getMyUid();
 
   NewPocketBaseStorage()
-      .insertSync(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello"))));
+      .set(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello"))));
 }
 
 _button01(BuildContext context) async {
   String? userId = await PocketBaseAuth().getMyUid();
 
-  File? _ = await NewPocketBaseStorage().getSync(userId!, "hello.text");
-  log(_?.path);
-  log(await _?.length());
-
-  if (_ == null) return;
-
-  log(_.existsSync());
-
-  String text = utf8.decode(await _.readAsBytes());
-  log(text);
+  var _ = await NewPocketBaseStorage().get(userId!, "hello.text");
 }
 
 _button02(BuildContext context) async {
 }
 
 _button03(BuildContext context) async {
-  // bool success = await PermissionHandlerSpell()
-  //     .getMyPermission(context, [MyPermission(Permission.storage)]);
-  // if (success) {
-  //   // MySnackBarSpell().basicSnackBar1(context, "finish");
-  // }
-
-  if (await Permission.storage.request().isGranted) {
-    // Either the permission was already granted before or the user just granted it.
-  }
 }
 
 _button04(BuildContext context) async {
   String? userId = await PocketBaseAuth().getMyUid();
 
   NewPocketBaseStorage()
-      .upsertSync(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
+      .set(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
 }
 
 _button05(BuildContext context) async {
   String? userId = await PocketBaseAuth().getMyUid();
 
   NewPocketBaseStorage()
-      .upsertSync(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
+      .set(userId!, "hello.text", Uint8List.fromList(utf8.encode(("hello2"))));
 }
 
 _button06(BuildContext context) async {
