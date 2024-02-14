@@ -1,15 +1,18 @@
 import 'package:pocketbase/pocketbase.dart';
 
+import '../../../../../../../auth/new/data/source/auth/pocketbase/_.dart';
 import '../../../../../domain/entity/model/new/model.dart';
 import 'dart:convert';
 
+import 'config.dart';
+
 class NewModelPocketBase {
   // config
-  static final collectionRef =
-      PocketBase('http://127.0.0.1:8090/').collection("NewModel");
+  late RecordService collectionRef;
 
   Future<NewModel?> get(String docId) async {
     try {
+      await _ready();
       RecordModel record = await collectionRef.getOne(docId);
       var mapData = record.data;
       mapData['DocId'] = record.id;
@@ -21,6 +24,7 @@ class NewModelPocketBase {
 
   Future<List<NewModel>> getAll() async {
     try {
+      await _ready();
       ResultList records = await collectionRef.getList(
         page: 1,
         perPage: 100,
@@ -39,6 +43,7 @@ class NewModelPocketBase {
 
   Future<List<NewModel>> getByI000(int value) async {
     try {
+      await _ready();
       ResultList records = await collectionRef.getList(
         page: 1,
         perPage: 100,
@@ -71,6 +76,8 @@ class NewModelPocketBase {
   // }
 
   Future<void> upsert(NewModel object) async {
+    await _ready();
+
     var oldObject = await get(object.DocId);
     if (oldObject != null) {
       await update(object);
@@ -81,6 +88,8 @@ class NewModelPocketBase {
 
   Future<int> insert(NewModel object) async {
     try {
+      await _ready();
+
       var mapData = toMap(object: object);
       mapData["id"] = object.DocId;
       await collectionRef.create(body: mapData);
@@ -92,6 +101,8 @@ class NewModelPocketBase {
 
   Future<int> update(NewModel object) async {
     try {
+      await _ready();
+
       var mapData = toMap(object: object);
       mapData["id"] = object.DocId;
       await collectionRef.update(object.DocId, body: mapData);
@@ -103,6 +114,8 @@ class NewModelPocketBase {
 
   Future<int> delete() async {
     try {
+      await _ready();
+
       await collectionRef.delete("9h85o1nvkh8b4i5");
       return 1;
     } catch (e) {
@@ -829,4 +842,22 @@ class NewModelPocketBase {
 
     return object;
   }
+
+  _ready() async {
+    if (_isReady) return;
+    _isReady = true;
+    final authData = await PocketBaseAuth().getAuth();
+    if (authData != null) {
+      PocketBase pb =
+          PocketBase(NewPocketBaseCollectionConfig.serverUrl, authStore: authData);
+
+      collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
+    } else {
+      PocketBase pb = PocketBase(NewPocketBaseCollectionConfig.serverUrl);
+
+      collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
+    }
+  }
+
+  bool _isReady = false;
 }

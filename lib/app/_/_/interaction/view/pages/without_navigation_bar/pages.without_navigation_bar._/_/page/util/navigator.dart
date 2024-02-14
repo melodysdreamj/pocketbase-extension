@@ -37,7 +37,7 @@ class NewNavigator {
               heroKey: heroKey,
               readyDone: true,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 
   Future<void> movePageOff(BuildContext context,
@@ -60,7 +60,7 @@ class NewNavigator {
               heroKey: heroKey,
               readyDone: true,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 
   Future<void> movePageOffAll(BuildContext context,
@@ -83,7 +83,7 @@ class NewNavigator {
               heroKey: heroKey,
               readyDone: true,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 
   // page move without delay (hero animation not available)
@@ -96,7 +96,7 @@ class NewNavigator {
               tag: tag,
               heroKey: heroKey,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 
   movePageOffWithLoadingView(BuildContext context,
@@ -108,7 +108,7 @@ class NewNavigator {
               tag: tag,
               heroKey: heroKey,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 
   movePageOffAllWithLoadingView(BuildContext context,
@@ -120,6 +120,6 @@ class NewNavigator {
               tag: tag,
               heroKey: heroKey,
             ),
-        transition: transition ?? Transition.noTransition);
+        transition: transition ?? Transition.rightToLeft);
   }
 }

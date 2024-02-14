@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../util/start_app.dart';
 
-class InitView extends StatelessWidget {
-  const InitView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+class InitView {
+  Future<Widget> call(BuildContext context) async {
+    // return await NewNavigator(NewParams()).getPage(context);
     return Scaffold(
       body: Column(
         children: [
@@ -14,13 +12,11 @@ class InitView extends StatelessWidget {
             child: ListView(
               children: [
                 Gap(20),
-                Text("Lego App")
+                Text("New App")
                     .textStyle(Theme.of(context).textTheme.displaySmall!)
                     .fontWeight(FontWeight.bold)
                     .center(),
                 Gap(20),
-                _button(context, "New Button", () {}),
-                _button(context, "New Button", () {}),
                 _button(context, "New Button", () {}),
               ],
             ),

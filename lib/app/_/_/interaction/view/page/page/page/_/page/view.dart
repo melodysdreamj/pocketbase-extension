@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:easy_localization/easy_localization.dart';
+
 import '../../../../../../../../../../../util/start_app.dart';
 import '../vm/vm.dart';
 import 'config/params.dart';
@@ -30,6 +32,7 @@ class _VState extends State<V> {
               .fontWeight(FontWeight.bold)
               .textAlignment(TextAlign.center)
               .center(),
+          floatingActionButton: FloatingActionButtonKit(),
         ),
       ),
     );
