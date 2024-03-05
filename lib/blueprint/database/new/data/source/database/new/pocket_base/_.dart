@@ -8,12 +8,12 @@ import 'config.dart';
 
 class NewModelPocketBase {
   // config
-  late RecordService collectionRef;
+  late RecordService _collectionRef;
 
   Future<NewModel?> get(String docId) async {
     try {
       await _ready();
-      RecordModel record = await collectionRef.getOne(docId);
+      RecordModel record = await _collectionRef.getOne(docId);
       var mapData = record.data;
       mapData['DocId'] = record.id;
       return fromMap(mapData);
@@ -25,7 +25,7 @@ class NewModelPocketBase {
   Future<List<NewModel>> getAll() async {
     try {
       await _ready();
-      ResultList records = await collectionRef.getList(
+      ResultList records = await _collectionRef.getList(
         page: 1,
         perPage: 100,
       );
@@ -44,7 +44,7 @@ class NewModelPocketBase {
   Future<List<NewModel>> getByI000(int value) async {
     try {
       await _ready();
-      ResultList records = await collectionRef.getList(
+      ResultList records = await _collectionRef.getList(
         page: 1,
         perPage: 100,
         filter: 'I000 = $value',
@@ -63,7 +63,7 @@ class NewModelPocketBase {
 
   // Future<NewModel?> getByI000(int value) async {
   //   try {
-  //     RecordModel record = await collectionRef.getFirstListItem(
+  //     RecordModel record = await _collectionRef.getFirstListItem(
   //       'I000 = $value',
   //     );
   //     var mapData = record.data;
@@ -92,7 +92,7 @@ class NewModelPocketBase {
 
       var mapData = toMap(object: object);
       mapData["id"] = object.DocId;
-      await collectionRef.create(body: mapData);
+      await _collectionRef.create(body: mapData);
       return 1;
     } catch (e) {
       return 0;
@@ -105,7 +105,7 @@ class NewModelPocketBase {
 
       var mapData = toMap(object: object);
       mapData["id"] = object.DocId;
-      await collectionRef.update(object.DocId, body: mapData);
+      await _collectionRef.update(object.DocId, body: mapData);
       return 1;
     } catch (e) {
       return 0;
@@ -116,7 +116,7 @@ class NewModelPocketBase {
     try {
       await _ready();
 
-      await collectionRef.delete("9h85o1nvkh8b4i5");
+      await _collectionRef.delete("9h85o1nvkh8b4i5");
       return 1;
     } catch (e) {
       return 0;
@@ -851,11 +851,11 @@ class NewModelPocketBase {
       PocketBase pb =
           PocketBase(NewPocketBaseCollectionConfig.serverUrl, authStore: authData);
 
-      collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
+      _collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
     } else {
       PocketBase pb = PocketBase(NewPocketBaseCollectionConfig.serverUrl);
 
-      collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
+      _collectionRef = pb.collection(NewPocketBaseCollectionConfig.collectionName);
     }
   }
 
